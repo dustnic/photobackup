@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 while getopts "p:b:s:" opt; do
   case $opt in
     p) SYNC_PATH="$OPTARG"
