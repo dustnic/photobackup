@@ -1,9 +1,11 @@
 #!/bin/bash
-while getopts "p:b:" opt; do
+while getopts "p:b:s:" opt; do
   case $opt in
     p) SYNC_PATH="$OPTARG"
     ;;
     b) BUCKET_NAME="$OPTARG"                                                                                                                                                                 
+    ;;
+    s) SNS_TOPIC="$OPTARG"                                                                                                                                                                 
     ;;
     \?) echo "Invalid option -$OPTARG" >&2                                                                                                                                                   
     ;;
@@ -17,7 +19,6 @@ SCRIPT_NAME=$(basename $0)
 LOCKFOLDER="/tmp/run"
 LOCK="${LOCKFOLDER}/${SCRIPT_NAME}"
 COUNT_FILE="/tmp/photobackup-count.file"
-SNS_TOPIC="arn:aws:sns:eu-west-1:663357702312:nas-notifications"
 
 # Export specific AWS CLI profile
 export AWS_PROFILE=photobackup
